@@ -13,7 +13,6 @@ const SideBar = () => {
     return (
         <div className="sidebar">
             <input
-                style={{height: '30px'}}
                 type="text"
                 placeholder="Type lat or lng"
                 value={searchParam}

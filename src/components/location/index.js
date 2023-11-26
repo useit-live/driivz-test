@@ -21,7 +21,11 @@ const Location = () => {
     return (
         <div className='location'>
             <MapTracker
-                center={{lat: parseFloat(data.iss_position.latitude), lng: parseFloat(data.iss_position.longitude)}}/>
+                center={{
+                    lat: parseFloat(data.iss_position.latitude),
+                    lng: parseFloat(data.iss_position.longitude)
+                }}
+            />
             <Info location={data}/>
             <button
                 className='add-button'

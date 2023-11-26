@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {memo, useContext} from 'react';
 import {getDateTimeFromTimestamp} from "../../utils";
 import {locationHistoryContext, selectedLocationContext} from "../../App";
 import './style/index.css'
@@ -30,4 +30,4 @@ const Card = ({cardData}) => {
     );
 };
 
-export default Card;
+export default memo(Card);
