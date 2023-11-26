@@ -1,31 +1,39 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useMemo} from 'react';
 import Card from "../card";
 import {locationHistoryContext} from "../../App";
-import './style/index.css'
+import './style/index.css';
 
 const SideBar = () => {
-    const {locationHistory} = useContext(locationHistoryContext)
+    const {locationHistory} = useContext(locationHistoryContext);
     const [searchParam, setSearchParam] = useState('');
-    const handleDateChange = (e) => {
+
+    const handleSearchChange = (e) => {
         setSearchParam(e.target.value);
     };
+
+    const filteredLocations = useMemo(() =>
+            locationHistory?.filter((item) =>
+                item.iss_position.latitude.includes(searchParam)
+                || item.iss_position.longitude.includes(searchParam)
+            ),
+        [searchParam, locationHistory]
+    );
 
     return (
         <div className="sidebar">
             <input
                 type="text"
-                placeholder="Type lat or lng"
+                placeholder="Search by Latitude or Longitude"
                 value={searchParam}
-                onChange={handleDateChange}
+                onChange={handleSearchChange}
+                aria-label="Search Locations"
             />
-            {locationHistory?.filter((item) => item.iss_position.latitude.includes(searchParam)
-                || item.iss_position.longitude.includes(searchParam))
-                .map((location) => (
-                    <Card
-                        key={location.id}
-                        cardData={location}
-                    />
-                ))}
+            {filteredLocations.map((location) => (
+                <Card
+                    key={location.id}
+                    cardData={location}
+                />
+            ))}
         </div>
     );
 };
