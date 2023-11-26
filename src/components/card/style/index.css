@@ -1,17 +1,31 @@
-.card{
-    width: 95%;
+/*.card{*/
+/*    width: 90%;*/
+/*    height: auto;*/
+/*    background-color:yellow;*/
+/*    border: 1px solid black;*/
+/*    margin: 5px 0 5px 0;*/
+/*    cursor: pointer;*/
+/*    border-radius:5px;*/
+/*}*/
+
+.card {
+    width: 90%;
     height: auto;
     background-color:yellow;
     border: 1px solid black;
     margin: 5px 0 5px 0;
+    padding: 2px;
     cursor: pointer;
+    border-radius:5px;
 }
 
-.selected-card{
-    width: 95%;
+.active {
+    width: 90%;
     height: auto;
-    background-color:yellow;
-    border: 2px solid red;
+    border: 1px solid black;
     margin: 5px 0 5px 0;
+    padding: 2px;
     cursor: pointer;
+    border-radius:5px;
+    background: tomato;
 }

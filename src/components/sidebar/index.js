@@ -21,19 +21,23 @@ const SideBar = () => {
 
     return (
         <div className="sidebar">
-            <input
-                type="text"
-                placeholder="Search by Latitude or Longitude"
-                value={searchParam}
-                onChange={handleSearchChange}
-                aria-label="Search Locations"
-            />
-            {filteredLocations.map((location) => (
-                <Card
-                    key={location.id}
-                    cardData={location}
+            <div className='search'>
+                <input
+                    type="text"
+                    placeholder="Search by Latitude or Longitude"
+                    value={searchParam}
+                    onChange={handleSearchChange}
+                    aria-label="Search Locations"
                 />
-            ))}
+            </div>
+            <div className='card-container'>
+                {filteredLocations.map((location) => (
+                    <Card
+                        key={location.id}
+                        cardData={location}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

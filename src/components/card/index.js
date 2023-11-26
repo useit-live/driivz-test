@@ -16,7 +16,7 @@ const Card = ({cardData}) => {
 
     return (
         <div
-            className={selectedLocation?.id === cardData.id ? 'selected-card' : 'card'}
+            className={selectedLocation?.id === cardData.id ? 'card active' : 'card'}
             onClick={() => onHandleSelectCard(cardData)}
         >
             <p>{getDateTimeFromTimestamp(cardData.timestamp)}</p>

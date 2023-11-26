@@ -1,11 +1,5 @@
 export const getDateTimeFromTimestamp = (timestamp) => {
-    const date = new Date(timestamp * 1000);
-    return "Date: " + date.getDate() +
-        "/" + (date.getMonth() + 1) +
-        "/" + date.getFullYear() +
-        " " + date.getHours() +
-        ":" + date.getMinutes() +
-        ":" + date.getSeconds()
+    return new Date(timestamp * 1000).toLocaleString();
 }
 
 export const fetcher = (...args) => fetch(...args).then(res => res.json())
