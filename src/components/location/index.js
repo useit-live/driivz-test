@@ -1,39 +1,44 @@
-import React, {useContext} from 'react';
+import React, {useContext, useMemo} from 'react';
 import {locationHistoryContext, selectedLocationContext} from "../../App";
 import Info from "./info";
 import MapTracker from "../map";
 import useSWR from "swr";
 import {fetcher, ISS_URL} from "../../utils";
-import './style/index.css'
+import './style/index.css';
+
+const Loading = () => <div className='location'>loading...</div>;
+const Error = () => <div className='location'>failed to load</div>;
 
 const Location = () => {
-    const {data, error, isLoading} = useSWR(ISS_URL, fetcher, {refreshInterval: 5000})
-    const {locationHistory, setLocationHistory} = useContext(locationHistoryContext);
+    const {data, error, isLoading} = useSWR(ISS_URL, fetcher, {refreshInterval: 5000});
+    const {setLocationHistory} = useContext(locationHistoryContext);
     const {selectedLocation} = useContext(selectedLocationContext);
-    const onHandleAddData = (data) => {
-        setLocationHistory(() => [...locationHistory, {id: crypto.randomUUID(), ...data}])
-    }
 
-    if (error) return <div className='location'>failed to load</div>
-    if (isLoading) return <div className='location'>loading...</div>
-    if (selectedLocation) return <Info location={selectedLocation} isPrev/>
+    const onHandleAddData = (data) => {
+        setLocationHistory(prevHistory => [...prevHistory, {id: crypto.randomUUID(), ...data}]);
+    };
+
+    const mapCenter = useMemo(() => ({
+        lat: parseFloat(data?.iss_position?.latitude),
+        lng: parseFloat(data?.iss_position?.longitude)
+    }), [data]);
+
+    if (isLoading) return <Loading/>;
+    if (error) return <Error/>;
 
     return (
         <div className='location'>
-            <MapTracker
-                center={{
-                    lat: parseFloat(data.iss_position.latitude),
-                    lng: parseFloat(data.iss_position.longitude)
-                }}
-            />
-            <Info location={data}/>
+            <MapTracker center={mapCenter}/>
+            {selectedLocation ? <Info location={selectedLocation} isPrev/> : <Info location={data}/>}
             <button
                 className='add-button'
-                onClick={() => onHandleAddData(data)}>
+                onClick={() => onHandleAddData(data)}
+                aria-label="Add Location"
+            >
                 +
             </button>
         </div>
     );
 };
 
-export default Location;
+export default React.memo(Location);

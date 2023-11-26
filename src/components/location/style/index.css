@@ -9,10 +9,6 @@
     align-content: stretch;
 }
 
-.location-data {
-    cursor: pointer;
-}
-
 .add-button{
     width: 50px;
     height: 50px;
