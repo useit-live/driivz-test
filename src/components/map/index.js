@@ -15,7 +15,7 @@ const Marker = () => (
 const MapTracker = ({center}) => {
     return (
         <div className='iss-map'>
-            <h5>Online map</h5>
+            <h3>Online map</h3>
             <GoogleMapReact
                 bootstrapURLKeys={{key: ""}}
                 center={center}
