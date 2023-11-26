@@ -3,5 +3,3 @@ export const getDateTimeFromTimestamp = (timestamp) => {
 }
 
 export const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-export const ISS_URL = 'http://api.open-notify.org/iss-now.json'

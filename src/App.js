@@ -9,7 +9,6 @@ export const selectedLocationContext = createContext(null);
 function App() {
     const [locationHistory, setLocationHistory] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState(null);
-
     return (
         <div className="App">
             <locationHistoryContext.Provider value={{locationHistory, setLocationHistory}}>

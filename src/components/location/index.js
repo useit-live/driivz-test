@@ -3,14 +3,14 @@ import {locationHistoryContext, selectedLocationContext} from "../../App";
 import Info from "./info";
 import MapTracker from "../map";
 import useSWR from "swr";
-import {fetcher, ISS_URL} from "../../utils";
+import {fetcher} from "../../utils";
 import './style/index.css';
 
 const Loading = () => <div className='location'>loading...</div>;
 const Error = () => <div className='location'>failed to load</div>;
 
 const Location = () => {
-    const {data, error, isLoading} = useSWR(ISS_URL, fetcher, {refreshInterval: 5000});
+    const {data, error, isLoading} = useSWR(process.env.REACT_APP_API_URL, fetcher, {refreshInterval: 5000});
     const {setLocationHistory} = useContext(locationHistoryContext);
     const {selectedLocation} = useContext(selectedLocationContext);
 
