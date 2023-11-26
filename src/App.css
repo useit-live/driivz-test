@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  /*margin: 5px;*/
+  font: 1em/1.618 Inter, sans-serif;
+  margin: 5px;
 }
 
 .App-logo {
