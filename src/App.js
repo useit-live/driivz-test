@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from "./components/main";
+import {createContext, useState} from "react";
+
+
+export const locationHistoryContext = createContext([]);
+export const selectedLocationContext = createContext(null);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [locationHistory, setLocationHistory] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState(null);
+
+    return (
+        <div className="App">
+            <locationHistoryContext.Provider value={{locationHistory, setLocationHistory}}>
+                <selectedLocationContext.Provider value={{selectedLocation, setSelectedLocation}}>
+                    <Main/>
+                </selectedLocationContext.Provider>
+            </locationHistoryContext.Provider>
+        </div>
+    );
 }
 
 export default App;

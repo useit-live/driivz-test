@@ -1,0 +1,17 @@
+.card{
+    width: 95%;
+    height: auto;
+    background-color:yellow;
+    border: 1px solid black;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
+}
+
+.selected-card{
+    width: 95%;
+    height: auto;
+    background-color:yellow;
+    border: 2px solid red;
+    margin: 5px 0 5px 0;
+    cursor: pointer;
+}
