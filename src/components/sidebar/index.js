@@ -23,11 +23,11 @@ const SideBar = () => {
         <div className="sidebar">
             <div className='search'>
                 <input
-                    type="text"
+                    type="search"
                     placeholder="Search by Latitude or Longitude"
                     value={searchParam}
                     onChange={handleSearchChange}
-                    aria-label="Search Locations"
+                    aria-label="Search"
                 />
             </div>
             <div className='card-container'>
